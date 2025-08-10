@@ -1,44 +1,24 @@
 import "@typespec/http";
 
 using Http;
-@service(#{ title: "Widget Service" })
-namespace DemoService;
+@service(#{ title: "Notice Service" })
+namespace SDDService;
 
-model Widget {
-  id: string;
-  weight: int32;
-  color: "red" | "blue";
-}
+const noticeExample: Notice = #{
+  id: 1,
+  title: "Notice Title",
+  content: "Notice Content",
+  released_at: plainDate.fromISO("2025-08-10T00:00:00Z"),
+  created_at: utcDateTime.fromISO("2025-08-10T00:00:00Z"),
+  updated_at: utcDateTime.fromISO("2025-08-10T00:00:00Z"),
+};
 
-model WidgetList {
-  items: Widget[];
-}
-
-@error
-model Error {
-  code: int32;
-  message: string;
-}
-
-model AnalyzeResult {
-  id: string;
-  analysis: string;
-}
-
-@route("/widgets")
-@tag("Widgets")
-interface Widgets {
-  /** List widgets */
-  @get list(): WidgetList | Error;
-  /** Read widgets */
-  @get read(@path id: string): Widget | Error;
-  /** Create a widget */
-  @post create(@body body: Widget): Widget | Error;
-  /** Update a widget */
-  @patch update(@path id: string, @body body: MergePatchUpdate<Widget>): Widget | Error;
-  /** Delete a widget */
-  @delete delete(@path id: string): void | Error;
-
-  /** Analyze a widget */
-  @route("{id}/analyze") @post analyze(@path id: string): AnalyzeResult | Error;
+@example(noticeExample)
+model Notice {
+  id: int32;
+  title: string;
+  content: string;
+  released_at: plainDate;
+  created_at: utcDateTime;
+  updated_at: utcDateTime;
 }
