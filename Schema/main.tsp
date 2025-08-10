@@ -4,6 +4,29 @@ using Http;
 @service(#{ title: "Notice Service" })
 namespace SDDService;
 
+@error
+model BadRequestError {
+  code: "BAD_REQUEST";
+  message: string;
+}
+@error
+model NotFoundError {
+  code: "NOT_FOUND";
+  message: string;
+}
+@error
+model ValidationError {
+  code: "VALIDATION_ERROR";
+  message: string;
+  date: string[];
+}
+
+@error
+model InternalServerError {
+  code: "INTERNAL_SERVER_ERROR";
+  message: string;
+}
+
 const noticeExample: Notice = #{
   id: 1,
   title: "Notice Title",
@@ -29,11 +52,36 @@ interface NoticesService {
   @doc("Get all notices")
   @summary("Retrive all notices")
   @opExample(#{ parameters: #{ page: 1, limit: 10 } })
-  getNotices(@query page?: integer, @query limit?: integer): Notice[];
+  getNotices(@query page?: integer, @query limit?: integer): {
+    @statusCode statusCode: 200;
+    @body body: Notice[];
+  } | {
+    @statusCode statusCode: 400;
+    @body body: BadRequestError;
+  } | {
+    @statusCode statusCode: 500;
+    @body body: InternalServerError;
+  };
 
   @get
   @doc("Get a specific notice by ID")
   @summary("Retrice a notice by ID")
   @opExample(#{ parameters: #{ id: "fafasdfasdfadfasdfa" } })
-  getNotice(@path id: string): Notice;
+  getNotice(@path id: string):
+    | {
+        @statusCode statusCode: 200;
+        @body body: Notice;
+      }
+    | {
+        @statusCode statusCode: 400;
+        @body body: BadRequestError;
+      }
+    | {
+        @statusCode statusCode: 404;
+        @body body: NotFoundError;
+      }
+    | {
+        @statusCode statusCode: 500;
+        @body body: InternalServerError;
+      };
 }
