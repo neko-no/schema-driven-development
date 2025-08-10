@@ -46,42 +46,54 @@ model Notice {
   updated_at: utcDateTime;
 }
 
+model NoticeListResponse {
+  ...OkResponse;
+  ...Body<Notice[]>;
+}
+
+model NoticeResponse {
+  ...OkResponse;
+  ...Body<Notice>;
+}
+
+model SDDServiceBadRequestResponse {
+  ...BadRequestResponse;
+  ...Body<BadRequestError>;
+}
+
+model SDDServiceNotFoundResponse {
+  ...NotFoundResponse;
+  ...Body<NotFoundError>;
+}
+
+model SDDServiceValidationErrorResponse {
+  @statusCode statusCode: 422;
+  ...Body<ValidationError>;
+}
+
+model SDDServiceInternalServerErrorResponse {
+  @statusCode statusCode: 500;
+  ...Body<InternalServerError>;
+}
+
 @route("/notices")
 interface NoticesService {
   @get
   @doc("Get all notices")
   @summary("Retrive all notices")
   @opExample(#{ parameters: #{ page: 1, limit: 10 } })
-  getNotices(@query page?: integer, @query limit?: integer): {
-    @statusCode statusCode: 200;
-    @body body: Notice[];
-  } | {
-    @statusCode statusCode: 400;
-    @body body: BadRequestError;
-  } | {
-    @statusCode statusCode: 500;
-    @body body: InternalServerError;
-  };
+  getNotices(
+    @query page?: integer,
+    @query limit?: integer,
+  ): NoticeListResponse | SDDServiceBadRequestResponse | SDDServiceInternalServerErrorResponse;
 
   @get
   @doc("Get a specific notice by ID")
   @summary("Retrice a notice by ID")
   @opExample(#{ parameters: #{ id: "fafasdfasdfadfasdfa" } })
   getNotice(@path id: string):
-    | {
-        @statusCode statusCode: 200;
-        @body body: Notice;
-      }
-    | {
-        @statusCode statusCode: 400;
-        @body body: BadRequestError;
-      }
-    | {
-        @statusCode statusCode: 404;
-        @body body: NotFoundError;
-      }
-    | {
-        @statusCode statusCode: 500;
-        @body body: InternalServerError;
-      };
+    | NoticeResponse
+    | SDDServiceBadRequestResponse
+    | SDDServiceNotFoundResponse
+    | SDDServiceInternalServerErrorResponse;
 }
