@@ -32,3 +32,12 @@ tsp compile .
 
 > [!WARNING]
 > 今後は別の方法論で管理する可能性がある． 管理が細かすぎる可能性がある．NameSpaceの運用なども考えないといけない
+
+
+## Orval
+
+```
+pnpm i
+
+pnpm run generate:api
+```
