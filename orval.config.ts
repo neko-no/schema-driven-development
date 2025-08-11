@@ -11,6 +11,13 @@ export default defineConfig({
     },
     output: {
       target: "./frontend/src/schema",
+      mode: "single",
+      client: "zod",
+      override: {
+        zod: {
+          generateEachHttpStatus: true,
+        }
+      },
     },
   },
 });
