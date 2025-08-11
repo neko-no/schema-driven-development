@@ -18,7 +18,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate:api": "orval --config ./orval.config.ts"
   },
   "devDependencies": {
     "orval": "^7.11.2"
