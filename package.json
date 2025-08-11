@@ -1,0 +1,27 @@
+{
+  "name": "schema-driven-development",
+  "version": "1.0.0",
+  "description": "フロントエンド開発にて，スキーマ駆動開発を行う方法論を学ぶ",
+  "homepage": "https://github.com/neko-no/schema-driven-development#readme",
+  "bugs": {
+    "url": "https://github.com/neko-no/schema-driven-development/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neko-no/schema-driven-development.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "orval": "^7.11.2"
+  },
+  "packageManager": "pnpm@10.14.0"
+}
