@@ -10,6 +10,30 @@
 - **Orval**: 型安全なAPIクライアントコードの自動生成  
 - **MSW**: APIモック・テスト環境の構築
 
+## プロジェクト構成
+
+```
+schema-driven-development/
+├── schema/              # TypeSpecによるAPIスキーマ定義
+│   ├── app/            # アプリケーション固有の定義
+│   │   ├── main.tsp
+│   │   └── routes/     # APIエンドポイント定義
+│   ├── common/         # 共通モデル・レスポンス定義
+│   │   └── models/     # データモデル定義
+│   └── tsp-output/     # OpenAPI生成結果
+├── frontend/           # Next.jsフロントエンドアプリ
+│   └── src/schema/     # Orvalで生成されたAPIクライアント
+├── docs/              # プロジェクト仕様書・要件定義
+└── .claude/           # Claude Code設定・コマンド集
+```
+
+## 開発フロー
+
+1. **スキーマ定義**: `schema/`でTypeSpecによるAPI仕様定義
+2. **スキーマ生成**: `tsp compile`でOpenAPI生成
+3. **クライアント生成**: `orval`でフロントエンド用のAPIクライアント自動生成
+4. **モック開発**: MSWでモック環境を構築してフロントエンド先行開発
+
 ## セットアップ
 
 ### 基本コマンド
@@ -25,29 +49,51 @@ tsp compile .
 pnpm run generate:api
 ```
 
-### TypeSpecプロジェクト構成
+### TypeSpecプロジェクト詳細構成
 
 ```
-Schema/
+schema/
 ├── app/
-│   ├── routes/         # APIエンドポイント定義
+│   ├── routes/
+│   │   ├── main.tsp     # ルート定義のエントリーポイント
+│   │   └── notices.tsp  # お知らせ関連のエンドポイント
 │   └── main.tsp
 ├── common/
-│   ├── models/         # 共通データモデル
+│   ├── models/
+│   │   ├── main.tsp     # モデル定義のエントリーポイント
+│   │   ├── errors.tsp   # エラーレスポンス定義
+│   │   ├── notices.tsp  # お知らせモデル定義
+│   │   └── responses.tsp # 共通レスポンス型定義
 │   └── main.tsp
-└── main.tsp
+├── main.tsp            # プロジェクトのルートファイル
+└── tsp-output/
+    └── schema/
+        └── openapi.yaml # 生成されたOpenAPIスキーマ
 ```
 
 ## 技術詳細
 
+### TypeSpec
+- **役割**: OpenAPIスキーマの型安全な定義
+- **特徴**: 
+  - TypeScriptライクな構文でAPIスキーマを記述
+  - モデル、エンドポイント、レスポンスを構造化して管理
+  - OpenAPI 3.0形式での出力に対応
+
 ### Orval
-- OpenAPIから型安全なAPIクライアントを自動生成
-- TanStack Query・SWRとの統合に適している
+- **役割**: OpenAPIから型安全なAPIクライアントを自動生成
+- **特徴**:
+  - TanStack Query・SWRとの統合に適している
+  - TypeScriptの型安全性を維持
+  - カスタムAxiosインスタンス対応
 - **メリット**: ヒューマンエラー防止、標準化、モック機能によるフロントエンド先行開発
 
 ### MSW (Mock Service Worker)  
-- ネットワークレベルでリクエストをモック
-- SSR・CSR両対応、ローカル開発・テスト・Storybookで利用可能
+- **役割**: ネットワークレベルでリクエストをモック
+- **特徴**:
+  - SSR・CSR両対応
+  - ローカル開発・テスト・Storybookで利用可能  
+  - 実際のHTTPリクエストをインターセプト
 - **テスト戦略**: Integration Test中心のTesting Trophy採用
 
 ## テスト方針
