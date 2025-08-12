@@ -12,11 +12,19 @@ export default defineConfig({
     output: {
       target: "./frontend/src/schema",
       mode: "single",
-      client: "zod",
+      client: "react-query",
+      httpClient: "fetch",
       override: {
-        zod: {
-          generateEachHttpStatus: true,
-        }
+        fetch: {
+          includeHttpResponseReturnType: false, // false: fetch の返却値をResponseのデータの型にする
+        },
+        mock: {
+          required: true, // 自動生成で返却される mock データを必須にする
+        },
+      },
+      mock: {
+        type: "msw",
+        useExamples: true, // openapi.yaml の example を mock データとして使用するか(無い場合は faker.js で mock データが生成される)
       },
     },
   },
