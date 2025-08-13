@@ -4,6 +4,7 @@ export default function createUserQueryOptions() {
   return queryOptions({
     queryKey: ["users"],
     queryFn: getUsers,
+    staleTime: 60000,
   });
 }
 
