@@ -1,14 +1,27 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import createUserQueryOptions from "../../../../queryOptions/createUserQueryOptions";
+import {
+  useInfiniteQuery,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import createUserQueryOptions, {
+  createUserInfiniteQueryOptions,
+} from "../../../../queryOptions/createUserQueryOptions";
 import styles from "./RandomComponents.module.css";
 
 export default function RandomComponent() {
-  const userQueryOptions = createUserQueryOptions({ limit: 5 });
-  const { data } = useQuery(userQueryOptions);
+  const userQueryOptions = createUserInfiniteQueryOptions();
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery(userQueryOptions);
 
   const handleClick = () => {
     console.log("click");
   };
+
+  const handleFetchNextPage = () => {
+    fetchNextPage();
+  };
+
+  const users = data?.pages.flatMap((page) => page.users);
 
   return (
     <div className={styles.container}>
@@ -16,9 +29,17 @@ export default function RandomComponent() {
         データを再取得
       </button>
 
-      {data && Array.isArray(data) ? (
+      <button
+        onClick={handleFetchNextPage}
+        className={styles.button}
+        disabled={!hasNextPage || isFetchingNextPage}
+      >
+        {isFetchingNextPage ? "次のページを読み込み中..." : "次のページを取得"}
+      </button>
+
+      {users && Array.isArray(users) ? (
         <div className={styles.grid}>
-          {data.map((item: any, index: number) => (
+          {users.map((item: any, index: number) => (
             <div key={index} className={styles.card}>
               {Object.entries(item).map(([key, value]) => (
                 <div key={key} className={styles.fieldContainer}>
@@ -33,9 +54,9 @@ export default function RandomComponent() {
             </div>
           ))}
         </div>
-      ) : data ? (
+      ) : users ? (
         <div className={styles.singleCard}>
-          {Object.entries(data).map(([key, value]) => (
+          {Object.entries(users).map(([key, value]) => (
             <div key={key} className={styles.fieldContainer}>
               <span className={styles.fieldLabel}>{key}:</span>
               <p className={styles.fieldValue}>
