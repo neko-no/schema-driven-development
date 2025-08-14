@@ -1,18 +1,30 @@
-import { queryOptions } from "@tanstack/react-query";
+import { queryOptions, UseQueryOptions } from "@tanstack/react-query";
 
-export default function createUserQueryOptions() {
+export default function createUserQueryOptions<
+  TData = User[],
+  TError = Error
+  >(
+    params?: GetUserOptions,
+    options?: Omit<UseQueryOptions<User[], TError, TData>, "queryKey" | "queryFn">
+  ) {
   return queryOptions({
-    queryKey: ["users"],
-    queryFn: getUsers,
+    ...options,
+    queryKey: ["users", params],
+    queryFn: () => getUsers(params),
     staleTime: 60000,
   });
 }
 
-const getUsers = async (): Promise<User[]> => {
+const getUsers = async (params?: GetUserOptions): Promise<User[]> => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
   return response.json();
 };
+
+type GetUserOptions = {
+  page?: number;
+  limit?: number;
+}
 
 type User = {
   id: number;
@@ -37,3 +49,4 @@ type User = {
     bs: string;
   };
 }
+

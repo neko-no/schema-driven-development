@@ -3,14 +3,11 @@ import createUserQueryOptions from "../../../../queryOptions/createUserQueryOpti
 import styles from "./RandomComponents.module.css";
 
 export default function RandomComponent() {
-  const userQueryOptions = createUserQueryOptions();
+  const userQueryOptions = createUserQueryOptions({ limit: 5 });
   const { data } = useQuery(userQueryOptions);
-
-  const queryClient = useQueryClient();
 
   const handleClick = () => {
     console.log("click");
-    queryClient.invalidateQueries({ queryKey: userQueryOptions.queryKey });
   };
 
   return (
