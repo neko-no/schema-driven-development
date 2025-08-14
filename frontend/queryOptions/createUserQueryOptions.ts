@@ -1,4 +1,6 @@
 import { infiniteQueryOptions, queryOptions, UseQueryOptions } from "@tanstack/react-query";
+import { User, GetUserOptions, UserPagination, userSchema } from "../types/users";
+import { z } from "zod";
 
 export default function createUserQueryOptions<
   TData = User[],
@@ -29,13 +31,21 @@ export function createUserInfiniteQueryOptions () {
 const getUsers = async (params?: GetUserOptions): Promise<User[]> => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
-  return response.json();
+  const data = await response.json();
+  
+  // zodでパースしてバリデーション
+  const usersSchema = z.array(userSchema);
+  return usersSchema.parse(data);
 };
 
-const getUsersPagination = async (params?: GetUserOptions): Promise<UserPagenation> => {
+const getUsersPagination = async (params?: GetUserOptions): Promise<UserPagination> => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
-  const users: User[] = await response.json();
+  const data = await response.json();
+  
+  // zodでパースしてバリデーション
+  const usersSchema = z.array(userSchema);
+  const users = usersSchema.parse(data);
 
   const currentPage = params?.page || 1;
   const limit = params?.limit || 10;
@@ -57,42 +67,4 @@ const getUsersPagination = async (params?: GetUserOptions): Promise<UserPagenati
   };
 };
 
-type GetUserOptions = {
-  page?: number;
-  limit?: number;
-}
-
-type UserPagenation = {
-  users: User[],
-  pagination: {
-    currentPage: number;
-    totalPages: number;
-    totalItems: number;
-    hasMore: boolean;
-  }
-}
-
-type User = {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    }
-  };
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  };
-}
 
