@@ -1,13 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
-import createUserQueryOptions from "../../../../queryOptions/createUserQueryOptions";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import createUserQueryOptions, {
+  createUserInfiniteQueryOptions,
+} from "../../../../queryOptions/createUserQueryOptions";
 import styles from "./RandomComponents.module.css";
 
 export default function RandomComponent() {
-  const userQueryOptions = createUserQueryOptions();
-  const { data: users } = useQuery(userQueryOptions);
+  const userQueryOptions = createUserInfiniteQueryOptions();
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, refetch } =
+    useInfiniteQuery(userQueryOptions);
 
   const handleClick = () => {
-    console.log("click");
+    refetch();
   };
 
   return (
@@ -16,40 +19,39 @@ export default function RandomComponent() {
         データを再取得
       </button>
 
-      {users && Array.isArray(users) ? (
+      {data?.pages ? (
         <div className={styles.grid}>
-          {users.map((item: any, index: number) => (
-            <div key={index} className={styles.card}>
-              {Object.entries(item).map(([key, value]) => (
-                <div key={key} className={styles.fieldContainer}>
-                  <span className={styles.fieldLabel}>{key}:</span>
-                  <p className={styles.fieldValue}>
-                    {typeof value === "object"
-                      ? JSON.stringify(value)
-                      : String(value)}
-                  </p>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      ) : users ? (
-        <div className={styles.singleCard}>
-          {Object.entries(users).map(([key, value]) => (
-            <div key={key} className={styles.fieldContainer}>
-              <span className={styles.fieldLabel}>{key}:</span>
-              <p className={styles.fieldValue}>
-                {typeof value === "object"
-                  ? JSON.stringify(value)
-                  : String(value)}
-              </p>
-            </div>
-          ))}
+          {data.pages.map((page, pageIndex) =>
+            page.users.map((user: any, userIndex: number) => (
+              <div key={`${pageIndex}-${userIndex}`} className={styles.card}>
+                {Object.entries(user).map(([key, value]) => (
+                  <div key={key} className={styles.fieldContainer}>
+                    <span className={styles.fieldLabel}>{key}:</span>
+                    <p className={styles.fieldValue}>
+                      {typeof value === "object"
+                        ? JSON.stringify(value)
+                        : String(value)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ))
+          )}
         </div>
       ) : (
         <div className={styles.loadingContainer}>
           <p className={styles.loadingText}>データを読み込み中...</p>
         </div>
+      )}
+
+      {hasNextPage && (
+        <button
+          onClick={() => fetchNextPage()}
+          disabled={isFetchingNextPage}
+          className={styles.button}
+        >
+          {isFetchingNextPage ? "読み込み中..." : "さらに読み込む"}
+        </button>
       )}
     </div>
   );
