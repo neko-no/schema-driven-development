@@ -15,7 +15,8 @@ export default function createUserQueryOptions<
     queryFn: () => getUsers(params),
     select: (data) => {
       return data.sort((a, b) => a.phone.localeCompare(b.phone))
-    }
+    },
+    refetchInterval: 1000
   });
 }
 
