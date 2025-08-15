@@ -13,7 +13,9 @@ export default function createUserQueryOptions<
     ...options,
     queryKey: ["users", params],
     queryFn: () => getUsers(params),
-    staleTime: 60000,
+    select: (data) => {
+      return data.sort((a, b) => a.phone.localeCompare(b.phone))
+    }
   });
 }
 
@@ -32,7 +34,7 @@ const getUsers = async (params?: GetUserOptions): Promise<User[]> => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
   const data = await response.json();
-  
+
   // zodでパースしてバリデーション
   const usersSchema = z.array(userSchema);
   return usersSchema.parse(data);
@@ -42,7 +44,7 @@ const getUsersPagination = async (params?: GetUserOptions): Promise<UserPaginati
   await new Promise((resolve) => setTimeout(resolve, 1000));
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
   const data = await response.json();
-  
+
   // zodでパースしてバリデーション
   const usersSchema = z.array(userSchema);
   const users = usersSchema.parse(data);

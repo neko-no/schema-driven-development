@@ -1,40 +1,19 @@
-import {
-  useInfiniteQuery,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
-import createUserQueryOptions, {
-  createUserInfiniteQueryOptions,
-} from "../../../../queryOptions/createUserQueryOptions";
+import { useQuery } from "@tanstack/react-query";
+import createUserQueryOptions from "../../../../queryOptions/createUserQueryOptions";
 import styles from "./RandomComponents.module.css";
 
 export default function RandomComponent() {
-  const userQueryOptions = createUserInfiniteQueryOptions();
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery(userQueryOptions);
+  const userQueryOptions = createUserQueryOptions();
+  const { data: users } = useQuery(userQueryOptions);
 
   const handleClick = () => {
     console.log("click");
   };
 
-  const handleFetchNextPage = () => {
-    fetchNextPage();
-  };
-
-  const users = data?.pages.flatMap((page) => page.users);
-
   return (
     <div className={styles.container}>
       <button onClick={handleClick} className={styles.button}>
         データを再取得
-      </button>
-
-      <button
-        onClick={handleFetchNextPage}
-        className={styles.button}
-        disabled={!hasNextPage || isFetchingNextPage}
-      >
-        {isFetchingNextPage ? "次のページを読み込み中..." : "次のページを取得"}
       </button>
 
       {users && Array.isArray(users) ? (
