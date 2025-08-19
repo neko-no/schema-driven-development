@@ -25,7 +25,7 @@ export const getNoticesServiceGetNoticeResponseMock = (): Notice => ({"id":1,"ti
 
 
 export const getNoticesServiceGetNoticesMockHandler = (overrideResponse?: Notice[] | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<Notice[]> | Notice[])) => {
-  return http.get('*/notices', async (info) => {await delay(1000);
+  return http.get('http://localhost:3000/notices', async (info) => {await delay(1000);
   
     return new HttpResponse(JSON.stringify(overrideResponse !== undefined
     ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse)
@@ -37,7 +37,7 @@ export const getNoticesServiceGetNoticesMockHandler = (overrideResponse?: Notice
 }
 
 export const getNoticesServiceGetNoticeMockHandler = (overrideResponse?: Notice | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<Notice> | Notice)) => {
-  return http.get('*/notices/:id', async (info) => {await delay(1000);
+  return http.get('http://localhost:3000/notices/:id', async (info) => {await delay(1000);
   
     return new HttpResponse(JSON.stringify(overrideResponse !== undefined
     ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse)
