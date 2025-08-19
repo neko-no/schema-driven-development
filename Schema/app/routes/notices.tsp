@@ -3,6 +3,7 @@ import "../../common";
 
 using Http;
 @service(#{ title: "Notice Service" })
+@server("https://localhost", "テストサーバー")
 namespace SDDService;
 
 @route("/notices")

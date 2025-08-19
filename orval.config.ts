@@ -21,6 +21,7 @@ export default defineConfig({
         },
         mock: {
           required: true, // 自動生成で返却される mock データを必須にする
+          baseUrl: "http://localhost:3000"
         },
       },
       mock: {
