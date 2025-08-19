@@ -11,9 +11,10 @@ export default defineConfig({
     },
     output: {
       target: "./frontend/src/schema",
-      mode: "single",
+      mode: "split",
       client: "react-query",
       httpClient: "fetch",
+      clean: true,
       override: {
         fetch: {
           includeHttpResponseReturnType: false, // false: fetch の返却値をResponseのデータの型にする

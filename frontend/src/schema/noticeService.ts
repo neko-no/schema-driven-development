@@ -14,87 +14,14 @@ import type {
   UseQueryResult
 } from '@tanstack/react-query';
 
-import {
-  faker
-} from '@faker-js/faker';
+import type {
+  BadRequestError,
+  InternalServerError,
+  NotFoundError,
+  Notice,
+  NoticesServiceGetNoticesParams
+} from './noticeService.schemas';
 
-import {
-  HttpResponse,
-  delay,
-  http
-} from 'msw';
-
-export type BadRequestErrorCode = typeof BadRequestErrorCode[keyof typeof BadRequestErrorCode];
-
-
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export const BadRequestErrorCode = {
-  BAD_REQUEST: 'BAD_REQUEST',
-} as const;
-
-export interface BadRequestError {
-  code: BadRequestErrorCode;
-  message: string;
-}
-
-export type InternalServerErrorCode = typeof InternalServerErrorCode[keyof typeof InternalServerErrorCode];
-
-
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export const InternalServerErrorCode = {
-  INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR',
-} as const;
-
-export interface InternalServerError {
-  code: InternalServerErrorCode;
-  message: string;
-}
-
-export type NotFoundErrorCode = typeof NotFoundErrorCode[keyof typeof NotFoundErrorCode];
-
-
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export const NotFoundErrorCode = {
-  NOT_FOUND: 'NOT_FOUND',
-} as const;
-
-export interface NotFoundError {
-  code: NotFoundErrorCode;
-  message: string;
-}
-
-export interface Notice {
-  id: number;
-  title: string;
-  content: string;
-  released_at: string;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface SDDServiceValidationErrorResponse {
-  /** The body type of the operation request or response. */
-  body: ValidationError;
-}
-
-export type ValidationErrorCode = typeof ValidationErrorCode[keyof typeof ValidationErrorCode];
-
-
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export const ValidationErrorCode = {
-  VALIDATION_ERROR: 'VALIDATION_ERROR',
-} as const;
-
-export interface ValidationError {
-  code: ValidationErrorCode;
-  message: string;
-  date: string[];
-}
-
-export type NoticesServiceGetNoticesParams = {
-page?: number;
-limit?: number;
-};
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 
@@ -266,35 +193,5 @@ export function useNoticesServiceGetNotice<TData = Awaited<ReturnType<typeof not
 }
 
 
-export const getNoticesServiceGetNoticesResponseMock = (): Notice[] => (Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({id: faker.number.int({min: undefined, max: undefined}), title: faker.string.alpha({length: {min: 10, max: 20}}), content: faker.string.alpha({length: {min: 10, max: 20}}), released_at: faker.date.past().toISOString().split('T')[0], created_at: `${faker.date.past().toISOString().split('.')[0]}Z`, updated_at: `${faker.date.past().toISOString().split('.')[0]}Z`})))
-
-export const getNoticesServiceGetNoticeResponseMock = (): Notice => ({"id":1,"title":"Notice Title","content":"Notice Content","released_at":"2025-08-10T00:00:00Z","created_at":"2025-08-10T00:00:00Z","updated_at":"2025-08-10T00:00:00Z"})
 
 
-export const getNoticesServiceGetNoticesMockHandler = (overrideResponse?: Notice[] | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<Notice[]> | Notice[])) => {
-  return http.get('*/notices', async (info) => {await delay(1000);
-  
-    return new HttpResponse(JSON.stringify(overrideResponse !== undefined
-    ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse)
-    : getNoticesServiceGetNoticesResponseMock()),
-      { status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      })
-  })
-}
-
-export const getNoticesServiceGetNoticeMockHandler = (overrideResponse?: Notice | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<Notice> | Notice)) => {
-  return http.get('*/notices/:id', async (info) => {await delay(1000);
-  
-    return new HttpResponse(JSON.stringify(overrideResponse !== undefined
-    ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse)
-    : getNoticesServiceGetNoticeResponseMock()),
-      { status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      })
-  })
-}
-export const getNoticeServiceMock = () => [
-  getNoticesServiceGetNoticesMockHandler(),
-  getNoticesServiceGetNoticeMockHandler()
-]
