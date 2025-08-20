@@ -16,7 +16,7 @@ import {
 
 import type {
   Notice
-} from './noticeService.schemas';
+} from '../schema';
 
 
 export const getNoticesServiceGetNoticesResponseMock = (): Notice[] => (Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({id: faker.number.int({min: undefined, max: undefined}), title: faker.string.alpha({length: {min: 10, max: 20}}), content: faker.string.alpha({length: {min: 10, max: 20}}), released_at: faker.date.past().toISOString().split('T')[0], created_at: `${faker.date.past().toISOString().split('.')[0]}Z`, updated_at: `${faker.date.past().toISOString().split('.')[0]}Z`})))

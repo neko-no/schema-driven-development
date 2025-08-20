@@ -20,13 +20,16 @@ import type {
   NotFoundError,
   Notice,
   NoticesServiceGetNoticesParams
-} from './noticeService.schemas';
+} from '../schema';
 
+import { customFetch } from '../customFetch';
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 
       type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
+
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 
@@ -51,20 +54,14 @@ export const getNoticesServiceGetNoticesUrl = (params?: NoticesServiceGetNotices
 
 export const noticesServiceGetNotices = async (params?: NoticesServiceGetNoticesParams, options?: RequestInit): Promise<Notice[]> => {
   
-  const res = await fetch(getNoticesServiceGetNoticesUrl(params),
+  return customFetch<Notice[]>(getNoticesServiceGetNoticesUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: Notice[] = body ? JSON.parse(body) : {}
-
-  return data
-}
+);}
 
 
 
@@ -73,16 +70,16 @@ export const getNoticesServiceGetNoticesQueryKey = (params?: NoticesServiceGetNo
     }
 
     
-export const getNoticesServiceGetNoticesQueryOptions = <TData = Awaited<ReturnType<typeof noticesServiceGetNotices>>, TError = BadRequestError | InternalServerError>(params?: NoticesServiceGetNoticesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof noticesServiceGetNotices>>, TError, TData>, fetch?: RequestInit}
+export const getNoticesServiceGetNoticesQueryOptions = <TData = Awaited<ReturnType<typeof noticesServiceGetNotices>>, TError = BadRequestError | InternalServerError>(params?: NoticesServiceGetNoticesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof noticesServiceGetNotices>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
-const {query: queryOptions, fetch: fetchOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getNoticesServiceGetNoticesQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof noticesServiceGetNotices>>> = ({ signal }) => noticesServiceGetNotices(params, { signal, ...fetchOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof noticesServiceGetNotices>>> = ({ signal }) => noticesServiceGetNotices(params, { signal, ...requestOptions });
 
       
 
@@ -100,7 +97,7 @@ export type NoticesServiceGetNoticesQueryError = BadRequestError | InternalServe
  */
 
 export function useNoticesServiceGetNotices<TData = Awaited<ReturnType<typeof noticesServiceGetNotices>>, TError = BadRequestError | InternalServerError>(
- params?: NoticesServiceGetNoticesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof noticesServiceGetNotices>>, TError, TData>, fetch?: RequestInit}
+ params?: NoticesServiceGetNoticesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof noticesServiceGetNotices>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
   
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
@@ -130,20 +127,14 @@ export const getNoticesServiceGetNoticeUrl = (id: string,) => {
 
 export const noticesServiceGetNotice = async (id: string, options?: RequestInit): Promise<Notice> => {
   
-  const res = await fetch(getNoticesServiceGetNoticeUrl(id),
+  return customFetch<Notice>(getNoticesServiceGetNoticeUrl(id),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: Notice = body ? JSON.parse(body) : {}
-
-  return data
-}
+);}
 
 
 
@@ -152,16 +143,16 @@ export const getNoticesServiceGetNoticeQueryKey = (id?: string,) => {
     }
 
     
-export const getNoticesServiceGetNoticeQueryOptions = <TData = Awaited<ReturnType<typeof noticesServiceGetNotice>>, TError = BadRequestError | NotFoundError | InternalServerError>(id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof noticesServiceGetNotice>>, TError, TData>, fetch?: RequestInit}
+export const getNoticesServiceGetNoticeQueryOptions = <TData = Awaited<ReturnType<typeof noticesServiceGetNotice>>, TError = BadRequestError | NotFoundError | InternalServerError>(id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof noticesServiceGetNotice>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
-const {query: queryOptions, fetch: fetchOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getNoticesServiceGetNoticeQueryKey(id);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof noticesServiceGetNotice>>> = ({ signal }) => noticesServiceGetNotice(id, { signal, ...fetchOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof noticesServiceGetNotice>>> = ({ signal }) => noticesServiceGetNotice(id, { signal, ...requestOptions });
 
       
 
@@ -179,7 +170,7 @@ export type NoticesServiceGetNoticeQueryError = BadRequestError | NotFoundError 
  */
 
 export function useNoticesServiceGetNotice<TData = Awaited<ReturnType<typeof noticesServiceGetNotice>>, TError = BadRequestError | NotFoundError | InternalServerError>(
- id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof noticesServiceGetNotice>>, TError, TData>, fetch?: RequestInit}
+ id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof noticesServiceGetNotice>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
   
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 

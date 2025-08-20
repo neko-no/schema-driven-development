@@ -10,12 +10,17 @@ export default defineConfig({
       target: "./schema/tsp-output/schema/openapi.yaml",
     },
     output: {
-      target: "./frontend/src/schema",
+      target: "./frontend/src/apiClient/client",
+      schemas: "./frontend/src/apiClient/schema",
       mode: "split",
       client: "react-query",
       httpClient: "fetch",
       clean: true,
       override: {
+        mutator: {
+          path: "./frontend/src/apiClient/customFetch.ts",
+          name: "customFetch",
+        },
         fetch: {
           includeHttpResponseReturnType: false, // false: fetch の返却値をResponseのデータの型にする
         },
