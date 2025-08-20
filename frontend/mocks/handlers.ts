@@ -1,9 +1,9 @@
+
+import { getNoticeServiceMock } from "@/apiClient/client/noticeService.msw";
 import { http, HttpResponse, type RequestHandler } from "msw";
 
-const helloHandler = http.get("https://example.com/hello", () => {
-  return HttpResponse.json({
-    message: "Hello, world!",
-  });
-});
+const orvalHandlers = [...getNoticeServiceMock()];
 
-export const handlers: RequestHandler[] = [helloHandler];
+const originalHandlers: RequestHandler[] =[];
+
+export const handlers: RequestHandler[] = [...orvalHandlers, ...originalHandlers];
