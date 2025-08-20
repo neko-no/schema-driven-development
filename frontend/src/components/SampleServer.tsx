@@ -1,4 +1,4 @@
-import { noticesServiceGetNotices } from "@/schema/noticeService";
+import { noticesServiceGetNotices } from "@/apiClient/client/noticeService";
 import { Suspense } from "react";
 
 const Body: React.FC = async () => {

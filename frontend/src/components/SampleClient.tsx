@@ -1,7 +1,6 @@
 "use client";
 
-import { useNoticesServiceGetNotices } from "@/schema/noticeService";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useNoticesServiceGetNotices } from "@/apiClient/client/noticeService";
 
 const Body: React.FC = () => {
   const { data, isPending, error, isError } = useNoticesServiceGetNotices();
@@ -25,14 +24,7 @@ const Body: React.FC = () => {
 };
 
 const SampleClient: React.FC = () => {
-  // TanStack Queryを使用するためのQueryClientを作成し、QueryClientProviderでラップ
-  const queryClient = new QueryClient();
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Body />
-    </QueryClientProvider>
-  );
+  return <Body />;
 };
 
 export default SampleClient;
