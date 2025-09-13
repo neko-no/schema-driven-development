@@ -1,30 +1,30 @@
-"use client";
+'use client';
 
-import { useNoticesServiceGetNotices } from "@/apiClient/client/noticeService";
+import { useNoticesServiceGetNotices } from '@/apiClient/client/noticeService';
 
 const Body: React.FC = () => {
-  const { data, isPending, error, isError } = useNoticesServiceGetNotices();
+	const { data, isPending, error, isError } = useNoticesServiceGetNotices();
 
-  if (isError) {
-    return <p>{error.message}</p>;
-  }
+	if (isError) {
+		return <p>{error.message}</p>;
+	}
 
-  if (isPending) {
-    return <p>SampleClient Loading...</p>;
-  }
+	if (isPending) {
+		return <p>SampleClient Loading...</p>;
+	}
 
-  return (
-    <>
-      <h2>Client Component</h2>
-      {data.map((notice, i) => (
-        <p key={i}>{notice.title}</p>
-      ))}
-    </>
-  );
+	return (
+		<>
+			<h2>Client Component</h2>
+			{data.map((notice, i) => (
+				<p key={i}>{notice.title}</p>
+			))}
+		</>
+	);
 };
 
 const SampleClient: React.FC = () => {
-  return <Body />;
+	return <Body />;
 };
 
 export default SampleClient;

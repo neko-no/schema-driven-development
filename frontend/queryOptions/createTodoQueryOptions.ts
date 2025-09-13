@@ -1,24 +1,22 @@
-import { queryOptions } from "@tanstack/react-query";
+import { queryOptions } from '@tanstack/react-query';
 
 export default function createTodoQueryOptions() {
-    return queryOptions({
-    queryKey: ["todos"],
-    queryFn: getTodos,
-  });
+	return queryOptions({
+		queryKey: ['todos'],
+		queryFn: getTodos,
+	});
 }
 
 const getTodos = async (): Promise<Todo[]> => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  const response = await fetch(
-    `https://jsonplaceholder.typicode.com/comments?todos`
-  );
-  return response.json();
+	await new Promise((resolve) => setTimeout(resolve, 1000));
+	const response = await fetch(`https://jsonplaceholder.typicode.com/comments?todos`);
+	return response.json();
 };
 
 // Type definitions
 type Todo = {
-    userId: number;
-    id: number;
-    title: string;
-    completed: boolean;
-}
+	userId: number;
+	id: number;
+	title: string;
+	completed: boolean;
+};
