@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  frontend:
+    container_name: frontend_dev
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile.dev
+      target: development
+    
+    volumes:
+      # ソースコードのホットリロード用（Dockerfileの/srcに合わせる）
+      - .:/src
+      # node_modulesは除外してパフォーマンス向上
+      - /src/node_modules
+      # pnpmキャッシュ用ボリューム
+      - pnpm_cache:/root/.local/share/pnpm
+    
+    ports:
+      - "3000:3000"
+    
+    environment:
+      - NODE_ENV=development
+    
+    # ファイル変更の監視を有効化
+    stdin_open: true
+    tty: true
+    
+    networks:
+      - frontend_network
+
+volumes:
+  pnpm_cache:
+    name: frontend_pnpm_cache
+
+networks:
+  frontend_network:
+    driver: bridge
