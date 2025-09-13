@@ -1,4 +1,4 @@
-import { Suspense, type ReactNode } from "react";
+import { type ReactNode, Suspense } from "react";
 import { MswClientProvider } from "./MswClientProvider";
 
 if (process.env.NEXT_RUNTIME === "nodejs") {

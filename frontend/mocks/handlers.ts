@@ -1,9 +1,11 @@
-
+import { HttpResponse, http, type RequestHandler } from "msw";
 import { getNoticeServiceMock } from "@/apiClient/client/noticeService.msw";
-import { http, HttpResponse, type RequestHandler } from "msw";
 
 const orvalHandlers = [...getNoticeServiceMock()];
 
-const originalHandlers: RequestHandler[] =[];
+const originalHandlers: RequestHandler[] = [];
 
-export const handlers: RequestHandler[] = [...orvalHandlers, ...originalHandlers];
+export const handlers: RequestHandler[] = [
+  ...orvalHandlers,
+  ...originalHandlers,
+];

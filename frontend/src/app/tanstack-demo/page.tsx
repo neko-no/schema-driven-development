@@ -1,9 +1,9 @@
 "use client";
 
 import { useQueries } from "@tanstack/react-query";
+import createPostQueryOptions from "../../../queryOptions/createPostQueryOptions";
 import createTodoQueryOptions from "../../../queryOptions/createTodoQueryOptions";
 import createUserQueryOptions from "../../../queryOptions/createUserQueryOptions";
-import createPostQueryOptions from "../../../queryOptions/createPostQueryOptions";
 import styles from "./page.module.css";
 
 type Todo = {
@@ -57,7 +57,7 @@ export default function TanstackDemo() {
     return (
       <div className={styles.container}>
         <div className={styles.loadingContainer}>
-          <div className={styles.spinner}></div>
+          <div className={styles.spinner} />
           <p className={styles.loadingText}>データを読み込み中...</p>
         </div>
       </div>
@@ -69,15 +69,17 @@ export default function TanstackDemo() {
       <div className={styles.container}>
         <div className={styles.errorContainer}>
           <h2 className={styles.errorTitle}>エラーが発生しました</h2>
-          <p className={styles.errorMessage}>データの取得に失敗しました。再度お試しください。</p>
+          <p className={styles.errorMessage}>
+            データの取得に失敗しました。再度お試しください。
+          </p>
         </div>
       </div>
     );
   }
 
-  const todos = todoQuery.data as Todo[] || [];
-  const users = userQuery.data as User[] || [];
-  const posts = postQuery.data as Post[] || [];
+  const todos = (todoQuery.data as Todo[]) || [];
+  const users = (userQuery.data as User[]) || [];
+  const posts = (postQuery.data as Post[]) || [];
 
   return (
     <div className={styles.container}>
@@ -88,16 +90,16 @@ export default function TanstackDemo() {
 
       <div className={styles.grid}>
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>
-            ✅ Todos ({todos.length})
-          </h2>
+          <h2 className={styles.sectionTitle}>✅ Todos ({todos.length})</h2>
           <div className={styles.cardGrid}>
             {todos.slice(0, 6).map((todo) => (
-              <div key={todo.id} className={styles.card}>
+              <div className={styles.card} key={todo.id}>
                 <div className={styles.cardHeader}>
                   <span className={styles.cardId}>#{todo.id}</span>
-                  <span className={`${styles.status} ${todo.completed ? styles.completed : styles.pending}`}>
-                    {todo.completed ? '完了' : '未完了'}
+                  <span
+                    className={`${styles.status} ${todo.completed ? styles.completed : styles.pending}`}
+                  >
+                    {todo.completed ? "完了" : "未完了"}
                   </span>
                 </div>
                 <h3 className={styles.cardTitle}>{todo.title}</h3>
@@ -108,12 +110,10 @@ export default function TanstackDemo() {
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>
-            👥 Users ({users.length})
-          </h2>
+          <h2 className={styles.sectionTitle}>👥 Users ({users.length})</h2>
           <div className={styles.cardGrid}>
             {users.slice(0, 4).map((user) => (
-              <div key={user.id} className={styles.userCard}>
+              <div className={styles.userCard} key={user.id}>
                 <div className={styles.userHeader}>
                   <h3 className={styles.userName}>{user.name}</h3>
                   <span className={styles.username}>@{user.username}</span>
@@ -130,19 +130,21 @@ export default function TanstackDemo() {
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>
-            📝 Posts ({posts.length})
-          </h2>
+          <h2 className={styles.sectionTitle}>📝 Posts ({posts.length})</h2>
           <div className={styles.postGrid}>
             {posts.slice(0, 8).map((post) => (
-              <article key={post.id} className={styles.postCard}>
+              <article className={styles.postCard} key={post.id}>
                 <div className={styles.postHeader}>
                   <span className={styles.postId}>#{post.id}</span>
-                  <span className={styles.postAuthor}>by User {post.userId}</span>
+                  <span className={styles.postAuthor}>
+                    by User {post.userId}
+                  </span>
                 </div>
                 <h3 className={styles.postTitle}>{post.title}</h3>
                 <p className={styles.postBody}>
-                  {post.body.length > 100 ? `${post.body.substring(0, 100)}...` : post.body}
+                  {post.body.length > 100
+                    ? `${post.body.substring(0, 100)}...`
+                    : post.body}
                 </p>
               </article>
             ))}
@@ -152,7 +154,8 @@ export default function TanstackDemo() {
 
       <footer className={styles.footer}>
         <p className={styles.footerText}>
-          🚀 Powered by TanStack Query | データ更新時刻: {new Date().toLocaleTimeString('ja-JP')}
+          🚀 Powered by TanStack Query | データ更新時刻:{" "}
+          {new Date().toLocaleTimeString("ja-JP")}
         </p>
       </footer>
     </div>

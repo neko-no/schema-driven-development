@@ -28,8 +28,8 @@ export default function MSWDemoPage() {
       <p>MSWハンドラーにリクエストを送信してレスポンスを表示します。</p>
 
       <button
-        onClick={fetchData}
         disabled={loading}
+        onClick={fetchData}
         style={{
           padding: "0.5rem 1rem",
           backgroundColor: "#0070f3",

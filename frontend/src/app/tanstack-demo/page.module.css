@@ -251,8 +251,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loadingText {
@@ -287,16 +291,16 @@
   .container {
     padding: 1rem;
   }
-  
+
   .title {
     font-size: 2rem;
   }
-  
+
   .cardGrid,
   .postGrid {
     grid-template-columns: 1fr;
   }
-  
+
   .section {
     padding: 1.5rem;
   }
