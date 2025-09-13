@@ -1,0 +1,43 @@
+{
+  "name": "Frontend Development Container",
+  "dockerComposeFile": "../frontend/docker-compose.yml",
+  "service": "frontend",
+  "workspaceFolder": "/src",
+  "shutdownAction": "stopCompose",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-json",
+        "ms-vscode.vscode-eslint",
+        "ms-playwright.playwright",
+        "orta.vscode-jest",
+        "ms-vscode.vscode-node-debug2"
+      ],
+      "settings": {
+        "typescript.preferences.useAliasesForRenames": false,
+        "typescript.suggest.autoImports": true,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "tailwindCSS.experimental.configFile": "./tailwind.config.ts"
+      }
+    }
+  },
+
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Next.js Dev Server",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "postCreateCommand": "pnpm install",
+  "remoteUser": "node"
+}
