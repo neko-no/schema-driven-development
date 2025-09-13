@@ -6,10 +6,10 @@
  */
 
 export interface Notice {
-  id: number;
-  title: string;
-  content: string;
-  released_at: string;
-  created_at: string;
-  updated_at: string;
+	id: number;
+	title: string;
+	content: string;
+	released_at: string;
+	created_at: string;
+	updated_at: string;
 }

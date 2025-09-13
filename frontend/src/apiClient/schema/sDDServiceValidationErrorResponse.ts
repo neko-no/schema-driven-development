@@ -7,6 +7,6 @@
 import type { ValidationError } from './validationError';
 
 export interface SDDServiceValidationErrorResponse {
-  /** The body type of the operation request or response. */
-  body: ValidationError;
+	/** The body type of the operation request or response. */
+	body: ValidationError;
 }
