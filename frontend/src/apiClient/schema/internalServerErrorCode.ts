@@ -6,9 +6,17 @@
  */
 
 export type InternalServerErrorCode =
+<<<<<<< HEAD
   (typeof InternalServerErrorCode)[keyof typeof InternalServerErrorCode];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const InternalServerErrorCode = {
   INTERNAL_SERVER_ERROR: "INTERNAL_SERVER_ERROR",
+=======
+	(typeof InternalServerErrorCode)[keyof typeof InternalServerErrorCode];
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const InternalServerErrorCode = {
+	INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR',
+>>>>>>> main
 } as const;

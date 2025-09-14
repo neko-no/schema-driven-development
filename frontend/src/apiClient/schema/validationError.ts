@@ -7,7 +7,7 @@
 import type { ValidationErrorCode } from "./validationErrorCode";
 
 export interface ValidationError {
-  code: ValidationErrorCode;
-  message: string;
-  date: string[];
+	code: ValidationErrorCode;
+	message: string;
+	date: string[];
 }

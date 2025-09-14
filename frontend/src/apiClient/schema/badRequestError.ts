@@ -7,6 +7,6 @@
 import type { BadRequestErrorCode } from "./badRequestErrorCode";
 
 export interface BadRequestError {
-  code: BadRequestErrorCode;
-  message: string;
+	code: BadRequestErrorCode;
+	message: string;
 }

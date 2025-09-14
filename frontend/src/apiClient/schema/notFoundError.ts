@@ -7,6 +7,6 @@
 import type { NotFoundErrorCode } from "./notFoundErrorCode";
 
 export interface NotFoundError {
-  code: NotFoundErrorCode;
-  message: string;
+	code: NotFoundErrorCode;
+	message: string;
 }

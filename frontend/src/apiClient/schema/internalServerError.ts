@@ -7,6 +7,6 @@
 import type { InternalServerErrorCode } from "./internalServerErrorCode";
 
 export interface InternalServerError {
-  code: InternalServerErrorCode;
-  message: string;
+	code: InternalServerErrorCode;
+	message: string;
 }

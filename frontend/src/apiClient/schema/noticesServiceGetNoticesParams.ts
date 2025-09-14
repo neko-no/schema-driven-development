@@ -6,6 +6,11 @@
  */
 
 export type NoticesServiceGetNoticesParams = {
+<<<<<<< HEAD
   page?: number;
   limit?: number;
+=======
+	page?: number;
+	limit?: number;
+>>>>>>> main
 };

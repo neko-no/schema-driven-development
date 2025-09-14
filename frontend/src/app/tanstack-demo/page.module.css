@@ -1,307 +1,307 @@
 .container {
-  min-height: 100vh;
-  padding: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+	min-height: 100vh;
+	padding: 2rem;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 3rem;
+	text-align: center;
+	margin-bottom: 3rem;
 }
 
 .title {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+	font-size: 3rem;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .subtitle {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  font-weight: 300;
+	font-size: 1.2rem;
+	opacity: 0.9;
+	font-weight: 300;
 }
 
 .grid {
-  display: grid;
-  gap: 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
+	display: grid;
+	gap: 2rem;
+	max-width: 1400px;
+	margin: 0 auto;
 }
 
 .section {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	border-radius: 16px;
+	padding: 2rem;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .sectionTitle {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 1.5rem;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
 }
 
 .cardGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 1rem;
 }
 
 .postGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 1rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	gap: 1rem;
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
+	background: rgba(255, 255, 255, 0.15);
+	border-radius: 12px;
+	padding: 1.5rem;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	transition: all 0.3s ease;
+	backdrop-filter: blur(5px);
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.2);
+	transform: translateY(-4px);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+	background: rgba(255, 255, 255, 0.2);
 }
 
 .cardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
 }
 
 .cardId {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: rgba(255, 255, 255, 0.8);
 }
 
 .status {
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
+	padding: 0.25rem 0.75rem;
+	border-radius: 20px;
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
 }
 
 .completed {
-  background: rgba(34, 197, 94, 0.3);
-  color: #22c55e;
-  border: 1px solid rgba(34, 197, 94, 0.5);
+	background: rgba(34, 197, 94, 0.3);
+	color: #22c55e;
+	border: 1px solid rgba(34, 197, 94, 0.5);
 }
 
 .pending {
-  background: rgba(251, 191, 36, 0.3);
-  color: #fbbf24;
-  border: 1px solid rgba(251, 191, 36, 0.5);
+	background: rgba(251, 191, 36, 0.3);
+	color: #fbbf24;
+	border: 1px solid rgba(251, 191, 36, 0.5);
 }
 
 .cardTitle {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-  color: #fff;
+	font-size: 1rem;
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+	line-height: 1.4;
+	color: #fff;
 }
 
 .cardMeta {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.7);
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.7);
 }
 
 .userCard {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
+	background: rgba(255, 255, 255, 0.15);
+	border-radius: 12px;
+	padding: 1.5rem;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	transition: all 0.3s ease;
+	backdrop-filter: blur(5px);
 }
 
 .userCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.2);
+	transform: translateY(-4px);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+	background: rgba(255, 255, 255, 0.2);
 }
 
 .userHeader {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .userName {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 0.25rem;
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: #fff;
+	margin-bottom: 0.25rem;
 }
 
 .username {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.6);
-  font-style: italic;
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.6);
+	font-style: italic;
 }
 
 .userInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
 }
 
 .userEmail,
 .userPhone,
 .userCompany,
 .userCity {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.8);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.8);
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
 }
 
 .postCard {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
+	background: rgba(255, 255, 255, 0.15);
+	border-radius: 12px;
+	padding: 1.5rem;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	transition: all 0.3s ease;
+	backdrop-filter: blur(5px);
 }
 
 .postCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.2);
+	transform: translateY(-4px);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+	background: rgba(255, 255, 255, 0.2);
 }
 
 .postHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
 }
 
 .postId {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: rgba(255, 255, 255, 0.8);
 }
 
 .postAuthor {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.25rem 0.5rem;
-  border-radius: 12px;
+	font-size: 0.75rem;
+	color: rgba(255, 255, 255, 0.6);
+	background: rgba(255, 255, 255, 0.1);
+	padding: 0.25rem 0.5rem;
+	border-radius: 12px;
 }
 
 .postTitle {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  color: #fff;
-  line-height: 1.4;
+	font-size: 1rem;
+	font-weight: 600;
+	margin-bottom: 0.75rem;
+	color: #fff;
+	line-height: 1.4;
 }
 
 .postBody {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.5;
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.8);
+	line-height: 1.5;
 }
 
 .footer {
-  text-align: center;
-  margin-top: 3rem;
-  padding: 2rem;
+	text-align: center;
+	margin-top: 3rem;
+	padding: 2rem;
 }
 
 .footerText {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.7);
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.7);
 }
 
 .loadingContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-  gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 60vh;
+	gap: 1rem;
 }
 
 .spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid #fff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+	width: 40px;
+	height: 40px;
+	border: 4px solid rgba(255, 255, 255, 0.3);
+	border-top: 4px solid #fff;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 .loadingText {
-  font-size: 1.125rem;
-  color: rgba(255, 255, 255, 0.9);
+	font-size: 1.125rem;
+	color: rgba(255, 255, 255, 0.9);
 }
 
 .errorContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-  gap: 1rem;
-  text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 60vh;
+	gap: 1rem;
+	text-align: center;
 }
 
 .errorTitle {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #ff6b6b;
-  margin-bottom: 0.5rem;
+	font-size: 2rem;
+	font-weight: bold;
+	color: #ff6b6b;
+	margin-bottom: 0.5rem;
 }
 
 .errorMessage {
-  font-size: 1.125rem;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 500px;
+	font-size: 1.125rem;
+	color: rgba(255, 255, 255, 0.8);
+	max-width: 500px;
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
+	.container {
+		padding: 1rem;
+	}
 
-  .title {
-    font-size: 2rem;
-  }
+	.title {
+		font-size: 2rem;
+	}
 
-  .cardGrid,
-  .postGrid {
-    grid-template-columns: 1fr;
-  }
+	.cardGrid,
+	.postGrid {
+		grid-template-columns: 1fr;
+	}
 
-  .section {
-    padding: 1.5rem;
-  }
+	.section {
+		padding: 1.5rem;
+	}
 }
