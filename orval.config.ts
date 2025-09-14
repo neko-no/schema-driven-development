@@ -12,13 +12,13 @@ export default defineConfig({
     output: {
       target: "./frontend/src/apiClient/client",
       schemas: "./frontend/src/apiClient/schema",
-      mode: "split",
+      mode: "tags-split",
       client: "react-query",
       httpClient: "fetch",
       clean: true,
       override: {
         mutator: {
-          path: "./frontend/src/apiClient/customFetch.ts",
+          path: "./frontend/src/apiClient/custom-fetch.ts",
           name: "customFetch",
         },
         fetch: {
@@ -35,4 +35,15 @@ export default defineConfig({
       },
     },
   },
+  noticeZod: {
+    input: {
+      target: "./schema/tsp-output/schema/openapi.yaml",
+    },
+    output: {
+      mode: "tags-split",
+      client: "zod",
+      target: "./frontend/src/apiClient/client",
+      fileExtension: '.zod.ts',
+    }
+  }
 });
