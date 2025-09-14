@@ -27,26 +27,9 @@ export default function MSWDemoPage() {
 			<h1>MSW デモページ</h1>
 			<p>MSWハンドラーにリクエストを送信してレスポンスを表示します。</p>
 
-<<<<<<< HEAD
-      <button
-        disabled={loading}
-        onClick={fetchData}
-        style={{
-          padding: "0.5rem 1rem",
-          backgroundColor: "#0070f3",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-          cursor: loading ? "not-allowed" : "pointer",
-          opacity: loading ? 0.6 : 1,
-        }}
-      >
-        {loading ? "取得中..." : "データを取得"}
-      </button>
-=======
 			<button
-				onClick={fetchData}
 				disabled={loading}
+				onClick={fetchData}
 				style={{
 					padding: '0.5rem 1rem',
 					backgroundColor: '#0070f3',
@@ -59,7 +42,6 @@ export default function MSWDemoPage() {
 			>
 				{loading ? '取得中...' : 'データを取得'}
 			</button>
->>>>>>> main
 
 			{error && (
 				<div

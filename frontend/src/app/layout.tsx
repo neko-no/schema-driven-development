@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { MswProvider } from "../../providers/msw-provider";
-import TanstackProvider from "../../providers/tanstack-provider";
-=======
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import { MswProvider } from '../../providers/MswProvider';
-import TanstackProvider from '../../providers/TanstackProvider';
->>>>>>> main
+import { MswProvider } from '../../providers/msw-provider';
+import TanstackProvider from '../../providers/tanstack-provider';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',

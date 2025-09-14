@@ -5,18 +5,10 @@
  * OpenAPI spec version: 0.0.0
  */
 
-<<<<<<< HEAD
 export type ValidationErrorCode =
   (typeof ValidationErrorCode)[keyof typeof ValidationErrorCode];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const ValidationErrorCode = {
   VALIDATION_ERROR: "VALIDATION_ERROR",
-=======
-export type ValidationErrorCode = (typeof ValidationErrorCode)[keyof typeof ValidationErrorCode];
-
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export const ValidationErrorCode = {
-	VALIDATION_ERROR: 'VALIDATION_ERROR',
->>>>>>> main
 } as const;
