@@ -12,8 +12,6 @@ export const customFetch = async <TData>(
     // Authorization: `Bearer YOUR_TOKEN`,
   };
 
-  console.log(url);
-
   try {
     const response = await fetch(requestUrl, {
       ...options,
@@ -31,7 +29,6 @@ export const customFetch = async <TData>(
     const data: TData = await response.json();
     return data;
   } catch (error) {
-    console.error("customFetch Error:", error);
     throw error;
   }
 };

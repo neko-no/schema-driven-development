@@ -4,7 +4,7 @@
  * Notice Service
  * OpenAPI spec version: 0.0.0
  */
-import type { ValidationErrorCode } from "./validationErrorCode";
+import type { ValidationErrorCode } from './validationErrorCode';
 
 export interface ValidationError {
   code: ValidationErrorCode;
