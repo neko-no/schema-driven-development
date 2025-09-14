@@ -4,44 +4,42 @@
  * Notice Service
  * OpenAPI spec version: 0.0.0
  */
-import {
-  z as zod
-} from 'zod';
-
+import { z as zod } from "zod";
 
 /**
  * Get all notices
  * @summary Retrive all notices
  */
 export const noticesServiceGetNoticesQueryParams = zod.object({
-  "page": zod.number().optional(),
-  "limit": zod.number().optional()
-})
+  page: zod.number().optional(),
+  limit: zod.number().optional(),
+});
 
 export const noticesServiceGetNoticesResponseItem = zod.object({
-  "id": zod.number(),
-  "title": zod.string(),
-  "content": zod.string(),
-  "released_at": zod.string().date(),
-  "created_at": zod.string().datetime({}),
-  "updated_at": zod.string().datetime({})
-})
-export const noticesServiceGetNoticesResponse = zod.array(noticesServiceGetNoticesResponseItem)
+  id: zod.number(),
+  title: zod.string(),
+  content: zod.string(),
+  released_at: zod.string().date(),
+  created_at: zod.string().datetime({}),
+  updated_at: zod.string().datetime({}),
+});
+export const noticesServiceGetNoticesResponse = zod.array(
+  noticesServiceGetNoticesResponseItem
+);
 
 /**
  * Get a specific notice by ID
  * @summary Retrice a notice by ID
  */
 export const noticesServiceGetNoticeParams = zod.object({
-  "id": zod.string()
-})
+  id: zod.string(),
+});
 
 export const noticesServiceGetNoticeResponse = zod.object({
-  "id": zod.number(),
-  "title": zod.string(),
-  "content": zod.string(),
-  "released_at": zod.string().date(),
-  "created_at": zod.string().datetime({}),
-  "updated_at": zod.string().datetime({})
-})
-
+  id: zod.number(),
+  title: zod.string(),
+  content: zod.string(),
+  released_at: zod.string().date(),
+  created_at: zod.string().datetime({}),
+  updated_at: zod.string().datetime({}),
+});

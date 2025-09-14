@@ -4,7 +4,7 @@
  * Notice Service
  * OpenAPI spec version: 0.0.0
  */
-import type { InternalServerErrorCode } from './internalServerErrorCode';
+import type { InternalServerErrorCode } from "./internalServerErrorCode";
 
 export interface InternalServerError {
   code: InternalServerErrorCode;

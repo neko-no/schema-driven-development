@@ -1,9 +1,9 @@
 "use client";
 
 import { useQueries } from "@tanstack/react-query";
-import createPostQueryOptions from "../../../queryOptions/createPostQueryOptions";
-import createTodoQueryOptions from "../../../queryOptions/createTodoQueryOptions";
-import createUserQueryOptions from "../../../queryOptions/createUserQueryOptions";
+import createPostQueryOptions from "../../../queryOptions/create-post-query-options";
+import createTodoQueryOptions from "../../../queryOptions/create-todo-query-options";
+import createUserQueryOptions from "../../../queryOptions/create-user-query-options";
 import styles from "./page.module.css";
 
 type Todo = {

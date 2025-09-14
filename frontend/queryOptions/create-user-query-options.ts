@@ -40,8 +40,10 @@ export function createUserInfiniteQueryOptions() {
   });
 }
 
-const getUsers = async (params?: GetUserOptions): Promise<User[]> => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+const DELAY_MS = 1000;
+
+const getUsers = async (_params?: GetUserOptions): Promise<User[]> => {
+  await new Promise((resolve) => setTimeout(resolve, DELAY_MS));
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
   const data = await response.json();
 
@@ -53,7 +55,7 @@ const getUsers = async (params?: GetUserOptions): Promise<User[]> => {
 const getUsersPagination = async (
   params?: GetUserOptions
 ): Promise<UserPagination> => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, DELAY_MS));
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
   const data = await response.json();
 

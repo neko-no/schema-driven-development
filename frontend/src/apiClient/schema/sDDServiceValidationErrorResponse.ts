@@ -4,7 +4,7 @@
  * Notice Service
  * OpenAPI spec version: 0.0.0
  */
-import type { ValidationError } from './validationError';
+import type { ValidationError } from "./validationError";
 
 export interface SDDServiceValidationErrorResponse {
   /** The body type of the operation request or response. */

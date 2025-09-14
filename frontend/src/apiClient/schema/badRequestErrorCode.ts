@@ -5,10 +5,10 @@
  * OpenAPI spec version: 0.0.0
  */
 
-export type BadRequestErrorCode = typeof BadRequestErrorCode[keyof typeof BadRequestErrorCode];
-
+export type BadRequestErrorCode =
+  (typeof BadRequestErrorCode)[keyof typeof BadRequestErrorCode];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const BadRequestErrorCode = {
-  BAD_REQUEST: 'BAD_REQUEST',
+  BAD_REQUEST: "BAD_REQUEST",
 } as const;
