@@ -12,7 +12,7 @@ export default function MSWDemoPage() {
 		setError(null);
 
 		try {
-			const result = await fetch('https://example.com/hello');
+			const result = await fetch('http://localhost:3000/notices');
 			const data = await result.json();
 			setResponse(JSON.stringify(data, null, 2));
 		} catch (err) {
