@@ -4,7 +4,7 @@
  * Notice Service
  * OpenAPI spec version: 0.0.0
  */
-import type { NotFoundErrorCode } from './notFoundErrorCode';
+import type { NotFoundErrorCode } from "./notFoundErrorCode";
 
 export interface NotFoundError {
 	code: NotFoundErrorCode;

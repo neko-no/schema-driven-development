@@ -4,7 +4,7 @@
  * Notice Service
  * OpenAPI spec version: 0.0.0
  */
-import type { BadRequestErrorCode } from './badRequestErrorCode';
+import type { BadRequestErrorCode } from "./badRequestErrorCode";
 
 export interface BadRequestError {
 	code: BadRequestErrorCode;

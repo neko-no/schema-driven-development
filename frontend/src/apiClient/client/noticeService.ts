@@ -20,7 +20,7 @@ import type {
 	NoticesServiceGetNoticesParams,
 } from '../schema';
 
-import { customFetch } from '../customFetch';
+import { customFetch } from '../custom-fetch';
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 

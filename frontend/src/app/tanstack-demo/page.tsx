@@ -1,9 +1,9 @@
 'use client';
 
 import { useQueries } from '@tanstack/react-query';
-import createTodoQueryOptions from '../../../queryOptions/createTodoQueryOptions';
-import createUserQueryOptions from '../../../queryOptions/createUserQueryOptions';
-import createPostQueryOptions from '../../../queryOptions/createPostQueryOptions';
+import createPostQueryOptions from '../../../queryOptions/create-post-query-options';
+import createTodoQueryOptions from '../../../queryOptions/create-todo-query-options';
+import createUserQueryOptions from '../../../queryOptions/create-user-query-options';
 import styles from './page.module.css';
 
 type Todo = {
@@ -53,7 +53,7 @@ export default function TanstackDemo() {
 		return (
 			<div className={styles.container}>
 				<div className={styles.loadingContainer}>
-					<div className={styles.spinner}></div>
+					<div className={styles.spinner} />
 					<p className={styles.loadingText}>データを読み込み中...</p>
 				</div>
 			</div>
@@ -89,7 +89,7 @@ export default function TanstackDemo() {
 					<h2 className={styles.sectionTitle}>✅ Todos ({todos.length})</h2>
 					<div className={styles.cardGrid}>
 						{todos.slice(0, 6).map((todo) => (
-							<div key={todo.id} className={styles.card}>
+							<div className={styles.card} key={todo.id}>
 								<div className={styles.cardHeader}>
 									<span className={styles.cardId}>#{todo.id}</span>
 									<span
@@ -109,7 +109,7 @@ export default function TanstackDemo() {
 					<h2 className={styles.sectionTitle}>👥 Users ({users.length})</h2>
 					<div className={styles.cardGrid}>
 						{users.slice(0, 4).map((user) => (
-							<div key={user.id} className={styles.userCard}>
+							<div className={styles.userCard} key={user.id}>
 								<div className={styles.userHeader}>
 									<h3 className={styles.userName}>{user.name}</h3>
 									<span className={styles.username}>@{user.username}</span>
@@ -129,7 +129,7 @@ export default function TanstackDemo() {
 					<h2 className={styles.sectionTitle}>📝 Posts ({posts.length})</h2>
 					<div className={styles.postGrid}>
 						{posts.slice(0, 8).map((post) => (
-							<article key={post.id} className={styles.postCard}>
+							<article className={styles.postCard} key={post.id}>
 								<div className={styles.postHeader}>
 									<span className={styles.postId}>#{post.id}</span>
 									<span className={styles.postAuthor}>by User {post.userId}</span>

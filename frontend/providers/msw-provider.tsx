@@ -1,5 +1,5 @@
-import { Suspense, type ReactNode } from 'react';
-import { MswClientProvider } from './MswClientProvider';
+import { type ReactNode, Suspense } from 'react';
+import { MswClientProvider } from './msw-client-provider';
 
 if (process.env.NEXT_RUNTIME === 'nodejs') {
 	const { server } = await import('../mocks/server');

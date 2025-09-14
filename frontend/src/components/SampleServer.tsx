@@ -1,5 +1,5 @@
-import { noticesServiceGetNotices } from '@/apiClient/client/noticeService';
 import { Suspense } from 'react';
+import { noticesServiceGetNotices } from '@/apiClient/client/noticeService';
 
 const Body: React.FC = async () => {
 	const response = await noticesServiceGetNotices();

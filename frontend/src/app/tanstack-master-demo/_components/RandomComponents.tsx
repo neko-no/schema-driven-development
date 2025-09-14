@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import createUserQueryOptions, {
 	createUserInfiniteQueryOptions,
-} from '../../../../queryOptions/createUserQueryOptions';
+} from '../../../../queryOptions/create-user-query-options';
 import styles from './RandomComponents.module.css';
 
 export default function RandomComponent() {
@@ -15,7 +15,7 @@ export default function RandomComponent() {
 
 	return (
 		<div className={styles.container}>
-			<button onClick={handleClick} className={styles.button}>
+			<button className={styles.button} onClick={handleClick}>
 				データを再取得
 			</button>
 
@@ -23,9 +23,9 @@ export default function RandomComponent() {
 				<div className={styles.grid}>
 					{data.pages.map((page, pageIndex) =>
 						page.users.map((user: any, userIndex: number) => (
-							<div key={`${pageIndex}-${userIndex}`} className={styles.card}>
+							<div className={styles.card} key={`${pageIndex}-${userIndex}`}>
 								{Object.entries(user).map(([key, value]) => (
-									<div key={key} className={styles.fieldContainer}>
+									<div className={styles.fieldContainer} key={key}>
 										<span className={styles.fieldLabel}>{key}:</span>
 										<p className={styles.fieldValue}>
 											{typeof value === 'object'
@@ -46,9 +46,9 @@ export default function RandomComponent() {
 
 			{hasNextPage && (
 				<button
-					onClick={() => fetchNextPage()}
-					disabled={isFetchingNextPage}
 					className={styles.button}
+					disabled={isFetchingNextPage}
+					onClick={() => fetchNextPage()}
 				>
 					{isFetchingNextPage ? '読み込み中...' : 'さらに読み込む'}
 				</button>

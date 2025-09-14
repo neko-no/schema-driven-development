@@ -1,7 +1,7 @@
 'use client';
 
-import { ColumnDef } from '@tanstack/react-table';
-import { Notice } from '@/apiClient/schema';
+import type { ColumnDef } from '@tanstack/react-table';
+import type { Notice } from '@/apiClient/schema';
 
 export const columns: ColumnDef<Notice>[] = [
 	{

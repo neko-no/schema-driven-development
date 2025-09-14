@@ -12,13 +12,11 @@ export const customFetch = async <TData>(
 		// Authorization: `Bearer YOUR_TOKEN`,
 	};
 
-	console.log(url);
-
-	try {
-		const response = await fetch(requestUrl, {
-			...options,
-			headers,
-		});
+  try {
+    const response = await fetch(requestUrl, {
+      ...options,
+      headers,
+    });
 
 		// エラー時: 今回はシンプルにステータスのみを含むエラーを throw
 		if (!response.ok) {
@@ -27,11 +25,10 @@ export const customFetch = async <TData>(
 			);
 		}
 
-		// 成功時: レスポンスを JSON としてパース
-		const data: TData = await response.json();
-		return data;
-	} catch (error) {
-		console.error('customFetch Error:', error);
-		throw error;
-	}
+    // 成功時: レスポンスを JSON としてパース
+    const data: TData = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
 };
