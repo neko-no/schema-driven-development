@@ -128,7 +128,7 @@ const { mutate } = useMutation({
         queryClient.invalidateQueries({queryKey:
             createUsersQueryOptions().queryKey
         })
-    } 
+    }
 })
 
 // 関数実行後の再データ取得に関しては，自動で実行してくれる
@@ -231,3 +231,10 @@ export function createSingleUserQueryOptions(userID: string){
 - [TanStack Query実践入門](https://youtu.be/KkxPtimqaew?si=V9AOM5vhVdJMO_d5)
 - [TanStack Query詳細解説](https://youtu.be/mPaCnwpFvZY?si=Z2dX_j-xLX584zMa)
 - [TanStack Query実践ガイド](https://zenn.dev/taisei_13046/books/133e9995b6aadf)
+
+### Vitest関連
+- [Vitest Browser Modeがアツい](https://zenn.dev/apple_yagi/articles/b2b96af1fd355c)
+- [Web フロントエンドのテストと持続可能な方針の組み立てを考える | Offers Tech Blog](https://zenn.dev/overflow_offers/articles/20240209-testing-strategy)
+- [Vite は使ってないけど Jest を Vitest に移行する](https://zenn.dev/sa2knight/articles/migrating_vitest_from_jest)
+- [絶対に落とせない導線を守るフロントエンドテストを1か月で構築した話](https://zenn.dev/canary_techblog/articles/ffe6b28db145fb)
+- [テストをするときネストをするな - Avoid Nesting when you're Testing(今後の参考に)](https://zenn.dev/jay_es/articles/2025-08-11-avoid-nesting-when-youre-testing)
