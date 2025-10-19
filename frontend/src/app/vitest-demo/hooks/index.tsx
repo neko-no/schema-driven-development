@@ -1,10 +1,9 @@
-import { useCallback } from 'react';
+import { useCallback } from "react";
 
 export const useButtonClick = () => {
-	const handleClick = useCallback(() => {
-		console.log('ܿボタンがクリックされました');
-		alert('ܿボタンがクリックされました');
-	}, []);
+  const handleClick = useCallback(() => {
+    alert("ܿボタンがクリックされました");
+  }, []);
 
-	return { handleClick };
+  return { handleClick };
 };

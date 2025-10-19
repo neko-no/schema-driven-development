@@ -1,10 +1,10 @@
-import { queryOptions } from '@tanstack/react-query';
+import { queryOptions } from "@tanstack/react-query";
 
 export default function createPostQueryOptions() {
-	return queryOptions({
-		queryKey: ['posts'],
-		queryFn: getPosts,
-	});
+  return queryOptions({
+    queryKey: ["posts"],
+    queryFn: getPosts,
+  });
 }
 
 const DELAY_MS = 1000;
