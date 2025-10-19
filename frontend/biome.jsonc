@@ -1,7 +1,0 @@
-{
-  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "extends": ["ultracite"],
-  "files": {
-    "includes": ["**/*", "!src/apiClient", "!src/app/globals.css", "public"]
-  }
-}

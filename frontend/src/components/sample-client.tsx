@@ -16,8 +16,8 @@ const Body: React.FC = () => {
   return (
     <>
       <h2>Client Component</h2>
-      {data.map((notice, i) => (
-        <p key={i}>{notice.title}</p>
+      {data.map((notice) => (
+        <p key={notice.id}>{notice.title}</p>
       ))}
     </>
   );

@@ -1,5 +1,5 @@
-import SampleClient from "@/components/SampleClient";
-import SampleServer from "@/components/SampleServer";
+import SampleClient from "@/components/sample-client";
+import SampleServer from "@/components/sample-server";
 
 const Page = () => {
   return (

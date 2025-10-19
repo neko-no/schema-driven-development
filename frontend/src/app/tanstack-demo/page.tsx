@@ -6,6 +6,12 @@ import createTodoQueryOptions from "../../../queryOptions/create-todo-query-opti
 import createUserQueryOptions from "../../../queryOptions/create-user-query-options";
 import styles from "./page.module.css";
 
+// Display limits
+const MAX_TODOS_DISPLAY = 6;
+const MAX_USERS_DISPLAY = 4;
+const MAX_POSTS_DISPLAY = 8;
+const POST_PREVIEW_LENGTH = 100;
+
 type Todo = {
   userId: number;
   id: number;
@@ -92,7 +98,7 @@ export default function TanstackDemo() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>✅ Todos ({todos.length})</h2>
           <div className={styles.cardGrid}>
-            {todos.slice(0, 6).map((todo) => (
+            {todos.slice(0, MAX_TODOS_DISPLAY).map((todo) => (
               <div className={styles.card} key={todo.id}>
                 <div className={styles.cardHeader}>
                   <span className={styles.cardId}>#{todo.id}</span>
@@ -112,7 +118,7 @@ export default function TanstackDemo() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>👥 Users ({users.length})</h2>
           <div className={styles.cardGrid}>
-            {users.slice(0, 4).map((user) => (
+            {users.slice(0, MAX_USERS_DISPLAY).map((user) => (
               <div className={styles.userCard} key={user.id}>
                 <div className={styles.userHeader}>
                   <h3 className={styles.userName}>{user.name}</h3>
@@ -132,7 +138,7 @@ export default function TanstackDemo() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>📝 Posts ({posts.length})</h2>
           <div className={styles.postGrid}>
-            {posts.slice(0, 8).map((post) => (
+            {posts.slice(0, MAX_POSTS_DISPLAY).map((post) => (
               <article className={styles.postCard} key={post.id}>
                 <div className={styles.postHeader}>
                   <span className={styles.postId}>#{post.id}</span>
@@ -142,8 +148,8 @@ export default function TanstackDemo() {
                 </div>
                 <h3 className={styles.postTitle}>{post.title}</h3>
                 <p className={styles.postBody}>
-                  {post.body.length > 100
-                    ? `${post.body.substring(0, 100)}...`
+                  {post.body.length > POST_PREVIEW_LENGTH
+                    ? `${post.body.substring(0, POST_PREVIEW_LENGTH)}...`
                     : post.body}
                 </p>
               </article>

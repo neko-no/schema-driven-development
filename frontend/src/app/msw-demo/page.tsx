@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 
+const LOADING_OPACITY = 0.6;
+const FULL_OPACITY = 1;
+
 export default function MSWDemoPage() {
   const [response, setResponse] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -37,8 +40,9 @@ export default function MSWDemoPage() {
           border: "none",
           borderRadius: "4px",
           cursor: loading ? "not-allowed" : "pointer",
-          opacity: loading ? 0.6 : 1,
+          opacity: loading ? LOADING_OPACITY : FULL_OPACITY,
         }}
+        type="button"
       >
         {loading ? "取得中..." : "データを取得"}
       </button>

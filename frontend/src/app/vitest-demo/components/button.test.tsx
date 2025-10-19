@@ -3,16 +3,13 @@ import { userEvent } from "@vitest/browser/context";
 import { DemoButton } from "./button";
 
 describe("DemoButton", () => {
-  let consoleSpy: ReturnType<typeof vi.spyOn>;
   let alertSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
-    consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
     alertSpy = vi.spyOn(window, "alert").mockImplementation(() => {});
   });
 
   afterEach(() => {
-    consoleSpy.mockRestore();
     alertSpy.mockRestore();
   });
 
@@ -28,9 +25,7 @@ describe("DemoButton", () => {
     const button = screen.getByText("Click me");
     await userEvent.click(button);
 
-    expect(consoleSpy).toHaveBeenCalledWith("ܿボタンがクリックされました");
     expect(alertSpy).toHaveBeenCalledWith("ܿボタンがクリックされました");
-    expect(consoleSpy).toHaveBeenCalledTimes(1);
     expect(alertSpy).toHaveBeenCalledTimes(1);
   });
 
@@ -48,7 +43,6 @@ describe("DemoButton", () => {
     await userEvent.click(button);
     await userEvent.click(button);
 
-    expect(consoleSpy).toHaveBeenCalledTimes(2);
     expect(alertSpy).toHaveBeenCalledTimes(2);
   });
 });

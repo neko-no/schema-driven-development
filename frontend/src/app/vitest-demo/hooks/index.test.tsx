@@ -2,16 +2,13 @@ import { act, renderHook } from "@testing-library/react";
 import { useButtonClick } from ".";
 
 describe("useButtonClick", () => {
-  let consoleSpy: ReturnType<typeof vi.spyOn>;
   let alertSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
-    consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
     alertSpy = vi.spyOn(window, "alert").mockImplementation(() => {});
   });
 
   afterEach(() => {
-    consoleSpy.mockRestore();
     alertSpy.mockRestore();
   });
 
@@ -29,9 +26,7 @@ describe("useButtonClick", () => {
       result.current.handleClick();
     });
 
-    expect(consoleSpy).toHaveBeenCalledWith("ܿボタンがクリックされました");
     expect(alertSpy).toHaveBeenCalledWith("ܿボタンがクリックされました");
-    expect(consoleSpy).toHaveBeenCalledTimes(1);
     expect(alertSpy).toHaveBeenCalledTimes(1);
   });
 
