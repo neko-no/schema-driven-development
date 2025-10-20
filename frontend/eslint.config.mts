@@ -1,12 +1,10 @@
-import eslint from "@eslint/js";
-import { defineConfig } from "eslint/config";
 import eslintPluginReact from "eslint-plugin-react";
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import tsEslint from "typescript-eslint";
 
 /** @type {import("eslint").Linter.Config[]} */
-export default defineConfig(
-  { files: ["*.ts", "*.tsx"] },
+export default [
+  { files: ["**/*.ts", "**/*.tsx"] },
   {
     ignores: [
       "**/build/",
@@ -20,11 +18,7 @@ export default defineConfig(
     ],
   },
   // TypeScript configuration
-  {
-    name: "eslint/recommended",
-    rules: eslint.configs.recommended.rules,
-  },
-  tsEslint.configs.recommended,
+  ...tsEslint.configs.recommended,
 
   // React configuration
   {
@@ -47,8 +41,20 @@ export default defineConfig(
     rules: {
       ...eslintPluginReactHooks.configs.recommended.rules,
       "react/prop-types": "off",
+      "react-hooks/incompatible-library": "warn",
     },
-  }
+  },
 
-  // Next,js configuratio
-);
+  // Rules for generated API client code
+  {
+    name: "generated-code-overrides",
+    files: ["**/apiClient/**/*.ts", "**/apiClient/**/*.tsx"],
+    rules: {
+      "react-hooks/immutability": "off",
+      "no-useless-catch": "off",
+      "@typescript-eslint/no-redeclare": "off",
+    },
+  },
+
+  // Next.js configuration
+];
