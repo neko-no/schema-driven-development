@@ -1,17 +1,17 @@
-name: Test
+name: Cache Warmup
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-    types:
-      - opened
-      - synchronize
-      - reopened
+    paths:
+      - 'frontend/pnpm-lock.yaml'
+      - 'frontend/package.json'
+      - '.github/workflows/cache-warmup.yml'
 
 jobs:
-  test:
-    name: Run Vitest
+  warmup-cache:
+    name: Warmup Dependencies Cache
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -56,6 +56,3 @@ jobs:
       - name: Install Playwright browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: pnpm exec playwright install --with-deps chromium
-
-      - name: Run tests
-        run: pnpm test -- --run
