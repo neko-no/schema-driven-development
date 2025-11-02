@@ -28,7 +28,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <TanstackProvider>
-          <MswProvider>{children}</MswProvider>
+          <MswProvider>
+            <ul>
+              <li><a href="/">ホーム</a></li>
+              <li><a href="/form">入力フォーム</a></li>
+            </ul>
+            {children}
+          </MswProvider>
         </TanstackProvider>
       </body>
     </html>
