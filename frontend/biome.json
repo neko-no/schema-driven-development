@@ -12,7 +12,7 @@
   },
   "overrides": [
     {
-      "includes": ["**/*.test.*"],
+      "includes": ["**/*.test.*", "**/*.spec.*", "**/tests/**"],
       "linter": {
         "rules": {
           "correctness": {
@@ -20,6 +20,9 @@
           },
           "suspicious": {
             "noEmptyBlockStatements": "off"
+          },
+          "performance": {
+            "useTopLevelRegex": "off"
           }
         }
       }
