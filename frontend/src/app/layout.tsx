@@ -30,8 +30,12 @@ export default function RootLayout({
         <TanstackProvider>
           <MswProvider>
             <ul>
-              <li><a href="/">ホーム</a></li>
-              <li><a href="/form">入力フォーム</a></li>
+              <li>
+                <a href="/">ホーム</a>
+              </li>
+              <li>
+                <a href="/form">入力フォーム</a>
+              </li>
             </ul>
             {children}
           </MswProvider>
